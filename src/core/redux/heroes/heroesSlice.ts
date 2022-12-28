@@ -51,7 +51,6 @@ export const heroesSlice = createSlice({
     add(state, { payload }: PayloadAction<Omit<HeroType, "id">>) {
       const hero = { ...payload, id: uuid() };
       storage.set("heroes", [hero]);
-      console.log(storage.get("heroes"));
       state.items = [...state.items, hero];
     },
   },
