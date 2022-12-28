@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import uuid from "react-uuid";
-import { storage } from "../../storage";
+import { storage } from "../../helpers/storage";
 
 export type HeroSkillType = string;
 
