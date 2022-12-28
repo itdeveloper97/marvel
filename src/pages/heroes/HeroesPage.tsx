@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { heroesSearch } from "../../core/redux/heroes/heroesSlice";
 import { HeroCard } from "../hero/components/HeroCard";
 import { Link } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../../core/hooks/redux";
+import { useAppDispatch, useAppSelector } from "../../core/redux/store";
 
 export const HeroesPage = () => {
   const dispatch = useAppDispatch();

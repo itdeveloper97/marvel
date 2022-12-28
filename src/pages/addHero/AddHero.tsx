@@ -8,7 +8,8 @@ import {
 } from "../../core/redux/heroes/heroesSlice";
 import { useMemo } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAppDispatch } from "../../core/hooks/redux";
+import { useAppDispatch } from "../../core/redux/store";
+import { GoBack } from "../../components/common/GoBack";
 
 interface ICreateHero extends Omit<HeroType, "id" | "skills"> {
   skills: { name: HeroSkillType }[];
@@ -60,23 +61,28 @@ export const AddHero = () => {
 
   return (
     <Container>
-      <StyledForm onSubmit={handleSubmit(onSubmit)}>
-        <Controller
-          control={control}
-          name={"name"}
-          render={({ field }) => <Input placeholder={"Hero name"} {...field} />}
-        />
-        <Controller
-          control={control}
-          name={"src"}
-          render={({ field }) => (
-            <Input placeholder={"Link image"} {...field} />
-          )}
-        />
-        {arrayFields}
-        <Button onClick={handleAppend}>Add Property</Button>
-        <Button htmlType={"submit"}>Create</Button>
-      </StyledForm>
+      <GoBack />
+      <FormWrapper>
+        <StyledForm onSubmit={handleSubmit(onSubmit)}>
+          <Controller
+            control={control}
+            name={"name"}
+            render={({ field }) => (
+              <Input placeholder={"Hero name"} {...field} />
+            )}
+          />
+          <Controller
+            control={control}
+            name={"src"}
+            render={({ field }) => (
+              <Input placeholder={"Link image"} {...field} />
+            )}
+          />
+          {arrayFields}
+          <Button onClick={handleAppend}>Add Property</Button>
+          <Button htmlType={"submit"}>Create</Button>
+        </StyledForm>
+      </FormWrapper>
     </Container>
   );
 };
@@ -87,11 +93,13 @@ const StyledForm = styled.form`
     margin-bottom: 16px;
   }
 `;
+const FormWrapper = styled.div`
+  height: 100%;
+`;
+
 const Container = styled.div`
   min-height: 100vh;
+  box-sizing: border-box;
   padding: 24px;
   background-color: #f2f5f7;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 `;

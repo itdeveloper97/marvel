@@ -2,7 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
 import { HeroCard } from "./components/HeroCard";
-import { useAppSelector } from "../../core/hooks/redux";
+import { useAppSelector } from "../../core/redux/store";
+import { GoBack } from "../../components/common/GoBack";
 
 export const HeroPage = () => {
   const { heroId } = useParams();
@@ -10,7 +11,12 @@ export const HeroPage = () => {
     state.heroes.items.find((item) => item.id === heroId)
   );
 
-  return <Container>{hero && <HeroCard item={hero} />}</Container>;
+  return (
+    <Container>
+      <GoBack />
+      {hero && <HeroCard item={hero} />}
+    </Container>
+  );
 };
 
 const Container = styled.div`
