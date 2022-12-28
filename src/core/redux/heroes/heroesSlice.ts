@@ -28,13 +28,13 @@ const initialState: HeroesSliceType = {
     {
       id: uuid(),
       name: "Тор",
-      src: "https://kartinkin.net/uploads/posts/2022-03/1646191056_6-kartinkin-net-p-kartinki-geroev-marvel-7.png",
+      src: "https://pngfolio.com/images/all_img/copy/1657962224Thor%20Loki%20Marvel%20-%20Thor%20Marvel%20Avengers%20Alliance,%20HD%20Png%20Download.png",
       skills: ["Ближний бой", "Дальний бой", "Сила", "Стихия молнии"],
     },
     {
       id: uuid(),
       name: "Железный человек",
-      src: "https://kartinkin.net/uploads/posts/2022-02/1644998308_63-kartinkin-net-p-kartinki-geroi-marvel-70.png",
+      src: "https://cdn.vegaoo.es/images/rep_art/gra/318/3/318370/decoracion-mural-articulada-iron-man-1-m.jpg",
       skills: ["Ближний бой", "Дальний бой", "Сила", "Деньги"],
     },
     ...((storage.get("heroes") as HeroType[]) || []),

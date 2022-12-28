@@ -11,8 +11,6 @@ export const HeroPage = () => {
     state.heroes.items.find((item) => item.id === heroId)
   );
 
-  console.log(hero);
-
   return <Container>{hero && <HeroCard item={hero} />}</Container>;
 };
 

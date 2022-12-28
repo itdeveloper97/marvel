@@ -1,4 +1,4 @@
-import { Input, List } from "antd";
+import { Button, Input, List } from "antd";
 import React, { useMemo } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
@@ -28,8 +28,10 @@ export const HeroesPage = () => {
 
   return (
     <Container>
-      <Link to={"/add"}>Добавить Героя</Link>
       <InputWrapper>
+        <Link to={"/add"}>
+          <PrimaryButton>Add hero</PrimaryButton>
+        </Link>
         <Input placeholder="Search" onChange={handleSearch} value={search} />
       </InputWrapper>
 
@@ -47,6 +49,10 @@ export const HeroesPage = () => {
     </Container>
   );
 };
+
+const PrimaryButton = styled(Button).attrs({ type: "primary" })`
+  margin-bottom: 16px;
+`;
 
 const InputWrapper = styled.div`
   padding: 0 24px;
