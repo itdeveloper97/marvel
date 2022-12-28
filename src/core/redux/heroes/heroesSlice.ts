@@ -3,7 +3,7 @@ import uuid from "react-uuid";
 
 type HeroSkillType = string;
 
-type HeroType = {
+export type HeroType = {
   id: string;
   name: string;
   src: string;

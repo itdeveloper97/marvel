@@ -1,16 +1,19 @@
 import React from "react";
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { RootState } from "../../core/redux/store";
+import { HeroCard } from "./components/HeroCard";
 
 export const HeroPage = () => {
   const { heroId } = useParams();
-
-  return (
-    <Container>
-      <h1>Hero</h1>
-      <h1>id: {heroId}</h1>
-    </Container>
+  const hero = useSelector((state: RootState) =>
+    state.heroes.items.find((item) => item.id === heroId)
   );
+
+  console.log(hero);
+
+  return <Container>{hero && <HeroCard item={hero} />}</Container>;
 };
 
 const Container = styled.div`
