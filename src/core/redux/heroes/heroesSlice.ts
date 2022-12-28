@@ -1,7 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import uuid from "react-uuid";
+import { storage } from "../../storage";
 
-type HeroSkillType = string;
+export type HeroSkillType = string;
 
 export type HeroType = {
   id: string;
@@ -10,11 +11,9 @@ export type HeroType = {
   skills: HeroSkillType[];
 };
 
-type HeroesType = HeroType[];
-
 type HeroesSliceType = {
   search: string;
-  items: HeroesType;
+  items: HeroType[];
 };
 
 const initialState: HeroesSliceType = {
@@ -38,6 +37,7 @@ const initialState: HeroesSliceType = {
       src: "https://kartinkin.net/uploads/posts/2022-02/1644998308_63-kartinkin-net-p-kartinki-geroi-marvel-70.png",
       skills: ["Ближний бой", "Дальний бой", "Сила", "Деньги"],
     },
+    ...((storage.get("heroes") as HeroType[]) || []),
   ],
 };
 
@@ -48,7 +48,13 @@ export const heroesSlice = createSlice({
     search(state, { payload }: PayloadAction<string>) {
       state.search = payload;
     },
+    add(state, { payload }: PayloadAction<Omit<HeroType, "id">>) {
+      const hero = { ...payload, id: uuid() };
+      storage.set("heroes", [hero]);
+      console.log(storage.get("heroes"));
+      state.items = [...state.items, hero];
+    },
   },
 });
 
-export const { search: heroesSearch } = heroesSlice.actions;
+export const { search: heroesSearch, add: heroesAdd } = heroesSlice.actions;

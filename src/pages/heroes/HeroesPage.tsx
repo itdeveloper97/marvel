@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../core/redux/store";
 import { heroesSearch } from "../../core/redux/heroes/heroesSlice";
 import { HeroCard } from "../hero/components/HeroCard";
+import { Link } from "react-router-dom";
 
 export const HeroesPage = () => {
   const dispatch = useDispatch();
@@ -27,7 +28,7 @@ export const HeroesPage = () => {
 
   return (
     <Container>
-      <Title>Heroes</Title>
+      <Link to={"/add"}>Добавить Героя</Link>
       <InputWrapper>
         <Input placeholder="Search" onChange={handleSearch} value={search} />
       </InputWrapper>
@@ -54,14 +55,6 @@ const InputWrapper = styled.div`
 const ListWrapper = styled.div`
   width: 100%;
   margin-top: 24px;
-`;
-
-const Title = styled.div`
-  display: flex;
-  justify-content: center;
-  font-size: 36px;
-  font-weight: bold;
-  margin-bottom: 24px;
 `;
 
 const Container = styled.div`
