@@ -1,15 +1,14 @@
 import { Button, Input, List } from "antd";
 import React, { useMemo } from "react";
 import styled from "styled-components";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../core/redux/store";
 import { heroesSearch } from "../../core/redux/heroes/heroesSlice";
 import { HeroCard } from "../hero/components/HeroCard";
 import { Link } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../../core/hooks/redux";
 
 export const HeroesPage = () => {
-  const dispatch = useDispatch();
-  const { heroes, search } = useSelector((state: RootState) => ({
+  const dispatch = useAppDispatch();
+  const { heroes, search } = useAppSelector((state) => ({
     heroes: state.heroes.items,
     search: state.heroes.search,
   }));

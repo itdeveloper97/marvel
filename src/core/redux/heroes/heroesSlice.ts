@@ -37,7 +37,7 @@ const initialState: HeroesSliceType = {
       src: "https://cdn.vegaoo.es/images/rep_art/gra/318/3/318370/decoracion-mural-articulada-iron-man-1-m.jpg",
       skills: ["Ближний бой", "Дальний бой", "Сила", "Деньги"],
     },
-    ...((storage.get("heroes") as HeroType[]) || []),
+    ...(storage.get<HeroType[]>("heroes") || []),
   ],
 };
 
@@ -50,7 +50,8 @@ export const heroesSlice = createSlice({
     },
     add(state, { payload }: PayloadAction<Omit<HeroType, "id">>) {
       const hero = { ...payload, id: uuid() };
-      storage.set("heroes", [hero]);
+      const oldValues = storage.get<HeroType[]>("heroes") || [];
+      storage.set("heroes", [...oldValues, hero]);
       state.items = [...state.items, hero];
     },
   },

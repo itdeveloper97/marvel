@@ -1,13 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { RootState } from "../../core/redux/store";
 import { HeroCard } from "./components/HeroCard";
+import { useAppSelector } from "../../core/hooks/redux";
 
 export const HeroPage = () => {
   const { heroId } = useParams();
-  const hero = useSelector((state: RootState) =>
+  const hero = useAppSelector((state) =>
     state.heroes.items.find((item) => item.id === heroId)
   );
 

@@ -7,15 +7,15 @@ import {
   HeroType,
 } from "../../core/redux/heroes/heroesSlice";
 import { useMemo } from "react";
-import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { useAppDispatch } from "../../core/hooks/redux";
 
 interface ICreateHero extends Omit<HeroType, "id" | "skills"> {
   skills: { name: HeroSkillType }[];
 }
 
 export const AddHero = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const { control, handleSubmit, watch } = useForm<ICreateHero>();
